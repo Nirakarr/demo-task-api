@@ -1,6 +1,6 @@
 import bcrypt from "bcryptjs";
 import pool from "../database/connect_db.js";
-import generateEncryptedToken from "../utils/tokenUtils.js";
+import {generateEncryptedToken} from "../utils/tokenUtils.js";
 
 export const login = async (req, res) => {
   try {

@@ -2,7 +2,7 @@ import jwt from "jsonwebtoken";
 import crypto from "crypto";
 
 // Function to create a JWT token and then encrypt it
-function generateEncryptedToken(payload, jwtSecret, encryptKey, expiresIn = "1h") {
+export function generateEncryptedToken(payload, jwtSecret, encryptKey, expiresIn = "1h") {
   // First, create a JWT token with the payload and expiry
   const token = jwt.sign(payload, jwtSecret, { expiresIn });
 
@@ -21,7 +21,7 @@ function generateEncryptedToken(payload, jwtSecret, encryptKey, expiresIn = "1h"
 }
 
 // Function to decrypt a token and verify the JWT
-function decryptToken(encryptedToken, jwtSecret, encryptKey) {
+export function decryptToken(encryptedToken, jwtSecret, encryptKey) {
   // Prepare the decryption key same way as encryption
   const key = crypto.createHash("sha256").update(encryptKey).digest("base64").substring(0, 32);
   const iv = Buffer.alloc(16, 0);
@@ -34,6 +34,3 @@ function decryptToken(encryptedToken, jwtSecret, encryptKey) {
   // Verify the decrypted JWT and return the payload
   return jwt.verify(decrypted, jwtSecret);
 }
-
-// Export both functions
-export default { generateEncryptedToken, decryptToken };

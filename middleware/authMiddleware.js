@@ -1,4 +1,4 @@
-import { decryptToken } from "./utils/tokenUtils.js";
+import {decryptToken} from "../utils/tokenUtils.js";
 
 export const authRequired = (req, res, next) => {
   try {
